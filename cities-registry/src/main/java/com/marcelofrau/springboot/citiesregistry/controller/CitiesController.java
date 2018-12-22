@@ -2,6 +2,7 @@ package com.marcelofrau.springboot.citiesregistry.controller;
 
 import com.marcelofrau.springboot.citiesregistry.model.City;
 import com.marcelofrau.springboot.citiesregistry.service.CitiesService;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.Optional;
  * delete cities that are registered in this micro-service.
  */
 @RestController
+@Api(value="teste", description = "alo mundo")
 public class CitiesController {
 
     private static final Logger logger = LoggerFactory.getLogger(CitiesController.class);
