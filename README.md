@@ -56,13 +56,30 @@ Insomnia to test the provided REST API services.
 
 #### cities-registry (local access)
 
-##### To access the API
+To see all the available usage, please refer to the Swagger Documentation API.
+You can insert, save, list Cities and Connections between the cities using this
+microservice.
+
+Currently this micro-service is using H2 Database as a local database but this
+is intented to be changed on a production environment.
+
+##### cities-registry access the API
 
 - [http://localhost:8081/connections/](http://localhost:8081/connections/)
 - [http://localhost:8081/cities/](http://localhost:8081/cities/)
 
-##### To access the Documentation API (Swagger UI Interface)
+##### cities-registry access the Documentation API (Swagger UI Interface)
 
 - [http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)
 
 #### route-calculator (local access)
+
+To see all the available usage, please refer to the Swagger Documentation API
+
+##### route-calculator access the API
+
+- [http://localhost:8080/calculate-route/](http://localhost:8080/calculate-route/)
+
+##### route-calculator access the Documentation API (Swagger UI Interface)
+
+- [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
