@@ -31,3 +31,33 @@ dependencies {
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
+
+task copyJar(type: Copy) {
+	dependsOn   'jar'
+	from        "build/libs/route-calculator-${project.version}.jar"
+	into        'build/docker'
+	rename { String fileName ->
+		fileName.replace("-${project.version}", "")
+	}
+}
+
+task dockerBuild() {
+	dependsOn build
+	dependsOn copyJar
+	doLast {
+		exec {
+			workingDir '.'
+			commandLine "docker", "build", "-t", "marcelofrau/route-calculator", "."
+		}
+	}
+}
+
+task dockerSave() {
+	dependsOn dockerBuild
+	doLast {
+		exec {
+			workingDir 'build/docker'
+			commandLine 'docker', 'save', '-o', 'route-calculator-image.tar.gz', 'marcelofrau/route-calculator'
+		}
+	}
+}

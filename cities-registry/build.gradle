@@ -6,7 +6,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
 	}
 }
 
@@ -32,4 +32,34 @@ dependencies {
 
 	runtimeOnly('com.h2database:h2')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+task copyJar(type: Copy) {
+    dependsOn   'jar'
+    from        "build/libs/cities-registry-${project.version}.jar"
+    into        'build/docker'
+    rename { String fileName ->
+        fileName.replace("-${project.version}", "")
+    }
+}
+
+task dockerBuild() {
+    dependsOn build
+    dependsOn copyJar
+    doLast {
+        exec {
+            workingDir '.'
+            commandLine "docker", "build", "-t", "marcelofrau/cities-registry", "."
+        }
+    }
+}
+
+task dockerSave() {
+    dependsOn dockerBuild
+    doLast {
+        exec {
+            workingDir 'build/docker'
+            commandLine 'docker', 'save', '-o', 'cities-registry-image.tar.gz', 'marcelofrau/cities-registry'
+        }
+    }
 }

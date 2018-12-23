@@ -39,8 +39,6 @@ cd route-calculator
 ### Accessing the micro-services (docker)
 
 NOTE: Please replace 192.168.99.100 with your docker ip.
-In Windows if you have installed the docker toolbox can be found with `docker-machine.exe ip` command.
-Otherwise you can use the command `docker ip`.
 
 #### cities-registry (docker access)
 
