@@ -81,7 +81,7 @@ public class CitiesController {
     @ResponseBody
     @ApiOperation(value="Deletes a city from the registry", response = City.class)
     @ApiResponses(value={
-            @ApiResponse(code = 204, message = "No content in case of no found city"),
+            @ApiResponse(code = 404, message = "Not found in case of no found city"),
             @ApiResponse(code = 200, message = "Successfully deleted city"),
     })
     public ResponseEntity<City> deleteCity(@RequestBody City city) {
@@ -89,7 +89,7 @@ public class CitiesController {
 
         if (!service.findCity(city.getId()).isPresent()) {
             logger.info("City [%s] not found. Returning no content", city);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok(service.deleteCity(city));
@@ -110,7 +110,8 @@ public class CitiesController {
     @ResponseBody
     @ApiOperation(value="Performs a search to find a city, this can be by Id or by name", response = Iterable.class)
     @ApiResponses(value={
-            @ApiResponse(code = 204, message = "No content in case of no found city"),
+            @ApiResponse(code = 400, message = "In case of neither id nor name is defined in the request (or both)"),
+            @ApiResponse(code = 404, message = "Not found in case of no found city (if searched by id)"),
             @ApiResponse(code = 200, message = "Successfully found list of cities"),
     })
     public ResponseEntity<Iterable<City>> findCity(@RequestParam(required = false) Long id, @RequestParam(required = false) String name) {
@@ -126,7 +127,7 @@ public class CitiesController {
             return findByName(name);
         }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.badRequest().build();
     }
 
     private ResponseEntity<Iterable<City>> findByName(String name) {
@@ -138,7 +139,7 @@ public class CitiesController {
     private ResponseEntity<Iterable<City>> findById(@RequestParam(required = false) Long id) {
         final Optional<City> city = service.findCity(id);
         if (!city.isPresent()) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok(Collections.singletonList(city.get()));

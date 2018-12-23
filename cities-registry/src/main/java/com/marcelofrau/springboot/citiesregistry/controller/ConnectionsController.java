@@ -84,7 +84,7 @@ public class ConnectionsController {
     @ResponseBody
     @ApiOperation(value="Deletes a connection from the registry.", response = CityConnection.class)
     @ApiResponses(value={
-            @ApiResponse(code = 204, message = "No content in case of no found connection"),
+            @ApiResponse(code = 404, message = "No content in case of no found connection"),
             @ApiResponse(code = 200, message = "Successfully deleted connection"),
     })
     public ResponseEntity<CityConnection> deleteConnection(@RequestBody CityConnection connection) {
@@ -92,7 +92,7 @@ public class ConnectionsController {
 
         if (!service.findConnection(connection.getId()).isPresent()) {
             logger.info("Connection [%s] not found. Returning no content", connection);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok(service.deleteConnection(connection));
