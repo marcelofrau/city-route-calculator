@@ -3,6 +3,9 @@ package com.marcelofrau.springboot.citiesregistry.controller;
 import com.marcelofrau.springboot.citiesregistry.model.City;
 import com.marcelofrau.springboot.citiesregistry.service.CitiesService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,8 @@ import java.util.Optional;
  * delete cities that are registered in this micro-service.
  */
 @RestController
-@Api(value="teste", description = "alo mundo")
+@Api(value="Cities Controller", description = "CitiesController represents a controller that can save, list and delete " +
+        "cities that are registered in this micro-service.")
 public class CitiesController {
 
     private static final Logger logger = LoggerFactory.getLogger(CitiesController.class);
@@ -30,12 +34,16 @@ public class CitiesController {
     }
 
     /**
-     * List all registered cities found registered
+     * List all cities available
      * in this micro-service.
      * @return List of cities
      */
     @GetMapping("/cities")
     @ResponseBody
+    @ApiOperation(value="List all cities available", response = Iterable.class)
+    @ApiResponses(value={
+        @ApiResponse(code = 200, message = "Successfully retrieved list"),
+    })
     public ResponseEntity<Iterable<City>> listCities() {
         final Iterable<City> cities = service.listCities();
 
@@ -48,13 +56,16 @@ public class CitiesController {
     }
 
     /**
-     * Inserts a new city into the registry of this
-     * micro-service
+     * Create/save a city into the registry
      * @param city A city with empty ID will be inserted and with ID filled will be saved.
      * @return The new inserted city with the new Id if it was null.
      */
     @PutMapping("/cities")
     @ResponseBody
+    @ApiOperation(value="Create/save a city into the registry", response = City.class)
+    @ApiResponses(value={
+            @ApiResponse(code = 200, message = "Successfully saved city"),
+    })
     public ResponseEntity<City> saveCity(@RequestBody City city) {
         logger.info("Saving city [%s]", city);
         return ResponseEntity.ok(service.saveCity(city));
@@ -67,6 +78,12 @@ public class CitiesController {
      * @return The removed city
      */
     @DeleteMapping("/cities")
+    @ResponseBody
+    @ApiOperation(value="Deletes a city from the registry", response = City.class)
+    @ApiResponses(value={
+            @ApiResponse(code = 204, message = "No content in case of no found city"),
+            @ApiResponse(code = 200, message = "Successfully deleted city"),
+    })
     public ResponseEntity<City> deleteCity(@RequestBody City city) {
         logger.info("Deleting city [%s]", city);
 
@@ -87,9 +104,15 @@ public class CitiesController {
      *
      * @param id Optional argument, if indicated, the search will be by id
      * @param name Optional argument, if indicated the search will be by name
-     * @return
+     * @return A list of cities found with the name matching
      */
     @GetMapping("/cities/find")
+    @ResponseBody
+    @ApiOperation(value="Performs a search to find a city, this can be by Id or by name", response = Iterable.class)
+    @ApiResponses(value={
+            @ApiResponse(code = 204, message = "No content in case of no found city"),
+            @ApiResponse(code = 200, message = "Successfully found list of cities"),
+    })
     public ResponseEntity<Iterable<City>> findCity(@RequestParam(required = false) Long id, @RequestParam(required = false) String name) {
         if (id != null && name != null) {
             return ResponseEntity.badRequest().build();
