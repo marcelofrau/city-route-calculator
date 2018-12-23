@@ -16,7 +16,54 @@ To start using the docker-compose.yaml you must run the following commands:
 
 ### Accessing the microservices (in docker environment)
 
-## Running without docker
+//TODO
+
+### Building and running (docker)
+
+//TODO
+
+#### cities-registry (docker build)
+
+```bash
+cd cities-registry
+./gradlew dockerRun
+```
+
+#### route-calculator (docker build)
+
+```bash
+cd route-calculator
+./gradlew dockerRun
+```
+
+### Accessing the micro-services (docker)
+
+#### cities-registry (docker access)
+
+NOTE: Please replace 192.168.99.100 with your docker ip. This can be obtained with docker ip command.
+
+##### cities-registry access the API (docker access)
+
+- [http://192.168.99.100:8081/connections/](http://192.168.99.100:8081/connections/)
+- [http://192.168.99.100:8081/cities/](http://192.168.99.100:8081/cities/)
+
+##### cities-registry access the Documentation API (Swagger UI Interface, docker access)
+
+- [http://192.168.99.100:8081/swagger-ui.html](http://192.168.99.100:8081/swagger-ui.html)
+
+#### route-calculator (docker access)
+
+To see all the available usage, please refer to the Swagger Documentation API
+
+##### route-calculator access the API (docker access)
+
+- [http://192.168.99.100:8080/calculate-route/](http://192.168.99.100:8080/calculate-route/)
+
+##### route-calculator access the Documentation API (Swagger UI Interface, docker access)
+
+- [http://192.168.99.100:8080/swagger-ui.html](http://192.168.99.100:8080/swagger-ui.html)
+
+## Running without docker (locally)
 
 Follow the below instructions to start each microservice in a local way.
 In this way you can debug more easily and test a local configurations in your environment.
@@ -24,7 +71,7 @@ This is intended to have a better and a fast way to develop the micro-services, 
 the main intention is to run it in a dockerized way. If you want please see the section above
 of this one explaining on how to run in docker.
 
-### Building and running
+### Building and running (local)
 
 To build you must be on a environment with JDK8 installed. This is the only pre-requisite.
 Take note that if you are using Windows environment, the initial executable ./gradlew must be
@@ -63,12 +110,12 @@ microservice.
 Currently this micro-service is using H2 Database as a local database but this
 is intented to be changed on a production environment.
 
-##### cities-registry access the API
+##### cities-registry access the API (local access)
 
 - [http://localhost:8081/connections/](http://localhost:8081/connections/)
 - [http://localhost:8081/cities/](http://localhost:8081/cities/)
 
-##### cities-registry access the Documentation API (Swagger UI Interface)
+##### cities-registry access the Documentation API (Swagger UI Interface, local access)
 
 - [http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)
 
@@ -83,3 +130,10 @@ To see all the available usage, please refer to the Swagger Documentation API
 ##### route-calculator access the Documentation API (Swagger UI Interface)
 
 - [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+## Ideal pipeline
+
+In this section I described an ideal pipeline configuration to achieve the best performance
+on development and on distribution of each release.
+
+//TODO
