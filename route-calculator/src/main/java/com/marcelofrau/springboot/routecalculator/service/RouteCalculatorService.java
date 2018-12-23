@@ -8,6 +8,7 @@ import com.marcelofrau.springboot.routecalculator.service.utils.DijkstraAlgorith
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Edge;
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Graph;
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Vertex;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,10 @@ public final class RouteCalculatorService {
 
     private String cityRegistryURL;
 
-    public RouteCalculatorService(@Value("${city.registry.url}") String cityRegistryURL) {
+    public RouteCalculatorService(
+            @Value("${city.registry.url}") String cityRegistryURL) {
+
+
         this.cityRegistryURL = cityRegistryURL;
     }
 

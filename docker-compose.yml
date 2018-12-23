@@ -1,0 +1,25 @@
+version: '3'
+
+services: 
+  cities-registry:
+    build: 
+      context: cities-registry
+    ports:
+      - 8081:8081
+    networks:
+      - net1
+  route-calculator:
+    build:
+      context: route-calculator
+    ports:
+      - 8080:8080
+    environment:
+      - CITIES_REGISTRY_URL=http://cities-registry:8081
+    depends_on:
+      - cities-registry
+    networks:
+      - net1
+
+networks:
+  net1:
+    driver: bridge
