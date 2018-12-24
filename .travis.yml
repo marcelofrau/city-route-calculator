@@ -11,14 +11,14 @@ cache:
   - $HOME/.gradle/wrapper
 
 # Setup environment
-before_install:
-- chmod a+x gradlew
-- chmod a+x gradle/wrapper/gradle-wrapper.jar
+# before_install:
+# - chmod a+x gradlew
+# - chmod a+x gradle/wrapper/gradle-wrapper.jar
 
 # Default gradle task will be run automatically on build, no need to define it
 
 # Deployment to GitHub-releases
 before_deploy:
-  - ./gradlew desktop:dist
+  - ./gradlew build
 #  - java -jar 
 #  - java -jar launch4j/Launch4j/launch4j.jar launch4j/launch4j.xml
