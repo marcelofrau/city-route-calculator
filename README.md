@@ -16,20 +16,37 @@ To start using the docker-compose.yaml you must run the following commands:
 
 ### Accessing the microservices (in docker environment)
 
-//TODO
+To access each micro-service you can access directly in your browser. But if you
+want to test the API is strongly recommended that you have a tool like Postman or
+Insomnia to test the provided REST API services.
 
-### Building and running (docker)
+### Building and running all micro-services (using docker-compose)
 
-//TODO
+To start every micro-service using the docker-compose.yml file, you can do it using the following commands:
+
+```bash
+./gradlew dockerBuild
+docker-compose build
+docker-compose up
+```
+
+Two main services will be open, one in a 8080 port and another in 8081, you can check more info below on
+how to access each micro-service.
+
+NOTE: Please run the commands above in the root folder of this project.
 
 #### cities-registry (docker build)
 
+If you want you can start each service individually in docker. You can achieve that using the following command:
+
 ```bash
 cd cities-registry
-./gradlew dockerRun
+./gradlew dockerBuild
 ```
 
 #### route-calculator (docker build)
+
+If you want you can start each service individually in docker. You can achieve that using the following command:
 
 ```bash
 cd route-calculator

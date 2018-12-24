@@ -3,13 +3,16 @@ package com.marcelofrau.springboot.routecalculator.service;
 import com.marcelofrau.springboot.routecalculator.model.City;
 import com.marcelofrau.springboot.routecalculator.model.CityConnection;
 import com.marcelofrau.springboot.routecalculator.model.RouteResponse;
-import com.marcelofrau.springboot.routecalculator.service.utils.CityNotFoundException;
-import com.marcelofrau.springboot.routecalculator.service.utils.DijkstraAlgorithm;
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Edge;
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Graph;
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Vertex;
+import com.marcelofrau.springboot.routecalculator.service.utils.CityNotFoundException;
+import com.marcelofrau.springboot.routecalculator.service.utils.DijkstraAlgorithm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -27,13 +30,23 @@ import java.util.stream.Collectors;
 @Service
 public final class RouteCalculatorService {
 
+    private static final Logger logger = LoggerFactory.getLogger(RouteCalculatorService.class);
+
     private String cityRegistryURL;
 
     public RouteCalculatorService(
-            @Value("${city.registry.url}") String cityRegistryURL) {
+            @Value("${city.registry.url}") String cityRegistryURL,
+            @Autowired Environment environment) {
 
+        final String overrideUrl = System.getenv().get("CITIES_REGISTRY_URL");
 
-        this.cityRegistryURL = cityRegistryURL;
+        if (overrideUrl != null) {
+            logger.info("Override url detected, using the environment variable setting: CITIES_REGISTRY_URL='{}'", overrideUrl);
+            this.cityRegistryURL = overrideUrl;
+        } else {
+            this.cityRegistryURL = cityRegistryURL;
+        }
+        logger.info("CitiesRepository configured url: '{}'", this.cityRegistryURL);
     }
 
     /**

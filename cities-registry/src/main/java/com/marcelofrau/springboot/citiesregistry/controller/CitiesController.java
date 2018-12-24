@@ -48,7 +48,7 @@ public class CitiesController {
         final Iterable<City> cities = service.listCities();
 
         if (logger.isDebugEnabled()) {
-            logger.debug("List of cities acquired, returning: [%s]", cities);
+            logger.debug("List of cities acquired, returning: [{}]", cities);
         }
 
         logger.info("Listing registered cities.");
@@ -67,7 +67,7 @@ public class CitiesController {
             @ApiResponse(code = 200, message = "Successfully saved city"),
     })
     public ResponseEntity<City> saveCity(@RequestBody City city) {
-        logger.info("Saving city [%s]", city);
+        logger.info("Saving city [{}]", city);
         return ResponseEntity.ok(service.saveCity(city));
     }
 
@@ -85,10 +85,10 @@ public class CitiesController {
             @ApiResponse(code = 200, message = "Successfully deleted city"),
     })
     public ResponseEntity<City> deleteCity(@RequestBody City city) {
-        logger.info("Deleting city [%s]", city);
+        logger.info("Deleting city [{}]", city);
 
         if (!service.findCity(city.getId()).isPresent()) {
-            logger.info("City [%s] not found. Returning no content", city);
+            logger.info("City [{}] not found. Returning no content", city);
             return ResponseEntity.notFound().build();
         }
 
@@ -119,11 +119,11 @@ public class CitiesController {
             return ResponseEntity.badRequest().build();
         }
         if (id != null) {
-            logger.debug("Finding city by id '%s'", id);
+            logger.debug("Finding city by id '{}'", id);
             return findById(id);
         }
         if (name != null) {
-            logger.debug("Finding city by name '%s'", name);
+            logger.debug("Finding city by name '{}'", name);
             return findByName(name);
         }
 

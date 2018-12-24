@@ -61,3 +61,24 @@ task dockerSave() {
 		}
 	}
 }
+
+
+task dockerRun() {
+	dependsOn dockerBuild
+	doLast {
+		exec {
+			workingDir '.'
+			// Please change here to the ip of docker.
+			commandLine 'docker', 'run', '--name', 'route-calculator', '-p', '8080:8080', '-e', 'CITIES_REGISTRY_URL=http://192.168.99.100:8081', 'marcelofrau/route-calculator'
+		}
+	}
+}
+
+task dockerStop() {
+	doLast {
+		exec {
+			workingDir '.'
+			commandLine 'docker', 'stop', 'route-calculator'
+		}
+	}
+}

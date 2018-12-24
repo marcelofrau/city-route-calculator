@@ -63,3 +63,22 @@ task dockerSave() {
         }
     }
 }
+
+task dockerRun() {
+    dependsOn dockerBuild
+    doLast {
+        exec {
+            workingDir '.'
+            commandLine 'docker', 'run', '-it', '--name', 'cities-registry', '-p', '8081:8081', 'marcelofrau/cities-registry'
+        }
+    }
+}
+
+task dockerStop() {
+    doLast {
+        exec {
+            workingDir '.'
+            commandLine 'docker', 'stop', 'cities-registry'
+        }
+    }
+}

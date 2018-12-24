@@ -49,7 +49,7 @@ public class ConnectionsController {
         final Iterable<CityConnection> connections = service.listConnections();
 
         if (logger.isDebugEnabled()) {
-            logger.debug("Connections: %s", connections);
+            logger.debug("Connections: {}", connections);
         }
         return ResponseEntity.ok(connections);
     }
@@ -67,7 +67,7 @@ public class ConnectionsController {
             @ApiResponse(code = 200, message = "Successfully saved city connection"),
     })
     public ResponseEntity<CityConnection> saveConnection(@RequestBody CityConnection connection) {
-        logger.debug("Saving connection %s", connection);
+        logger.debug("Saving connection {}", connection);
         return ResponseEntity.ok(service.saveConnection(connection));
     }
 
@@ -88,10 +88,10 @@ public class ConnectionsController {
             @ApiResponse(code = 200, message = "Successfully deleted connection"),
     })
     public ResponseEntity<CityConnection> deleteConnection(@RequestBody CityConnection connection) {
-        logger.info("Deleting city [%s]", connection);
+        logger.info("Deleting city [{}]", connection);
 
         if (!service.findConnection(connection.getId()).isPresent()) {
-            logger.info("Connection [%s] not found. Returning no content", connection);
+            logger.info("Connection [{}] not found. Returning no content", connection);
             return ResponseEntity.notFound().build();
         }
 

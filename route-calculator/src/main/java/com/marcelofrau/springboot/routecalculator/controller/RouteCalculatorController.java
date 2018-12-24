@@ -66,7 +66,7 @@ public class RouteCalculatorController {
             @ApiResponse(code = 404, message = "Not found if cities is unreachable by any connection"),
     })
     public ResponseEntity<RouteResponse> calculateRoute(@RequestParam String fromCityName, @RequestParam String toCityName) {
-        logger.info("Route Calculation requested from %s to %s", fromCityName, toCityName);
+        logger.info("Route Calculation requested from {} to {}", fromCityName, toCityName);
         try {
             final Optional<RouteResponse> routeResponse = service.calculateRoute(fromCityName, toCityName);
             if (routeResponse.isPresent()) {
