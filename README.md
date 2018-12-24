@@ -161,3 +161,9 @@ In this section I described an ideal pipeline configuration to achieve the best 
 on development and on distribution of each release.
 
 //TODO
+
+## References
+
+- [https://www.baeldung.com/spring-cloud-netflix-hystrix](https://www.baeldung.com/spring-cloud-netflix-hystrix)
+- [http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html](http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html)
+- 
