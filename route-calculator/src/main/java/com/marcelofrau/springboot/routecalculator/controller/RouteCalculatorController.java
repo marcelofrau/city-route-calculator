@@ -3,6 +3,7 @@ package com.marcelofrau.springboot.routecalculator.controller;
 import com.marcelofrau.springboot.routecalculator.model.RouteResponse;
 import com.marcelofrau.springboot.routecalculator.service.RouteCalculatorService;
 import com.marcelofrau.springboot.routecalculator.service.utils.CityNotFoundException;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -79,5 +80,4 @@ public class RouteCalculatorController {
             return ResponseEntity.badRequest().build();
         }
     }
-
 }

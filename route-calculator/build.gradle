@@ -28,9 +28,17 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	compile('io.springfox:springfox-swagger2:2.9.2')
 	compile('io.springfox:springfox-swagger-ui:2.9.2')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.SR2"
+    }
+}
+
 
 task copyJar(type: Copy) {
 	dependsOn   'jar'

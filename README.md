@@ -10,6 +10,12 @@ You can find two main subfolders here, each one being a separated micro-service.
 - cities-registry
 - route-calculator
 
+***NOTE:***
+Route-calculator will rely on informations provided from cities-registry, if cities-registry is not
+available, route-calculator have a circuit-breaker mechanism that prevent user to have some mistaken
+error information, so a default fallback method is triggered returning no path available, when
+cities-registry is reachable again, everything starts to work properly again.
+
 ## Running in docker with docker-compose
 
 To start using the docker-compose.yaml you must run the following commands:
@@ -33,7 +39,7 @@ docker-compose up
 Two main services will be open, one in a 8080 port and another in 8081, you can check more info below on
 how to access each micro-service.
 
-NOTE: Please run the commands above in the root folder of this project.
+***NOTE***: Please run the commands above in the root folder of this project.
 
 #### cities-registry (docker build)
 
@@ -55,7 +61,7 @@ cd route-calculator
 
 ### Accessing the micro-services (docker)
 
-NOTE: Please replace 192.168.99.100 with your docker ip.
+***NOTE***: Please replace 192.168.99.100 with your docker ip.
 
 #### cities-registry (docker access)
 

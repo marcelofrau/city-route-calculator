@@ -8,6 +8,7 @@ import com.marcelofrau.springboot.routecalculator.model.dijsktra.Graph;
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Vertex;
 import com.marcelofrau.springboot.routecalculator.service.utils.CityNotFoundException;
 import com.marcelofrau.springboot.routecalculator.service.utils.DijkstraAlgorithm;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ import java.util.stream.Collectors;
  * This service rely on another micro-service data (CityRegistryApplication)
  */
 @Service
-public final class RouteCalculatorService {
+public class RouteCalculatorService {
 
     private static final Logger logger = LoggerFactory.getLogger(RouteCalculatorService.class);
 
@@ -66,6 +67,7 @@ public final class RouteCalculatorService {
      * @param toCityName The destination city to be travelled.
      * @return a RouteResponse containing all the information on the path calculations
      */
+    @HystrixCommand(fallbackMethod = "fallbackCalculateRoute")
     public Optional<RouteResponse> calculateRoute(final String fromCityName, final String toCityName) {
         final City[] cities = fetchCities();
         final CityConnection[] connections = fetchConnections();
@@ -100,6 +102,13 @@ public final class RouteCalculatorService {
         return Optional.of(new RouteResponse(fromCity, toCity, minConnections, minTime, connectionsPath, minConnectionsInTime));
     }
 
+    public Optional<RouteResponse> fallbackCalculateRoute(final String fromCityName, final String toCityName) {
+        logger.debug("Fallback triggered, please make sure the cities-repository micro-service is running");
+        return Optional.empty();
+    }
+
+
+    @HystrixCommand(fallbackMethod = "fallbackConnectionsReliable")
     private CityConnection[] fetchConnections() {
         final RestTemplate restTemplate = new RestTemplate();
         final String url = String.format("%s/%s", cityRegistryURL, "connections");
@@ -107,13 +116,19 @@ public final class RouteCalculatorService {
 
         return response.getBody();
     }
+    private CityConnection[] fallbackConnectionsReliable() {
+        return new CityConnection[0];
+    }
 
+    @HystrixCommand(fallbackMethod = "fallbackCitiesReliable")
     private City[] fetchCities() {
         final RestTemplate restTemplate = new RestTemplate();
         final String url = String.format("%s/%s", cityRegistryURL, "cities");
         final ResponseEntity<City[]> response = restTemplate.getForEntity(url, City[].class);
-
         return response.getBody();
+    }
+    private City[] fallbackCitiesReliable() {
+        return new City[0];
     }
 
     private City findCity(City[] cities, String cityName) {
