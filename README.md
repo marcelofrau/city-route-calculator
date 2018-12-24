@@ -41,7 +41,7 @@ If you want you can start each service individually in docker. You can achieve t
 
 ```bash
 cd cities-registry
-./gradlew dockerBuild
+./gradlew dockerRun
 ```
 
 #### route-calculator (docker build)
