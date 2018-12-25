@@ -4,22 +4,9 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
-		maven {
-			jcenter() //or mavenCentral()
-		}
 	}
 	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-    	classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
-  	}
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
 }
 
-repositories {
-	mavenCentral()
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.SR2"
-    }
-}
