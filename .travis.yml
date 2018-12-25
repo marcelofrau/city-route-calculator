@@ -13,7 +13,7 @@ cache:
 # Setup environment
 before_install:
   - chmod a+x gradlew
-  - chmod a+x gradle/wrapper/gradle-wrapper.jar
+#  - chmod a+x gradle/wrapper/gradle-wrapper.jar
 
 # Default gradle task will be run automatically on build, no need to define it
 
