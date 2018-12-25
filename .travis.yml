@@ -13,5 +13,5 @@ before_install:
 
 # Deployment to GitHub-releases
 build:
-  - ./gradlew build
+  - ./gradlew dockerBuild
 # add coverage and integration tests
