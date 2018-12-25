@@ -12,6 +12,6 @@ before_install:
 - chmod a+x gradle/wrapper/gradle-wrapper.jar
 
 # Deployment to GitHub-releases
-build:
+script:
   - ./gradlew dockerBuild
 # add coverage and integration tests
