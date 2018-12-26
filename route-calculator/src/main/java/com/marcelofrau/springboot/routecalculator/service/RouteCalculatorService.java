@@ -2,7 +2,8 @@ package com.marcelofrau.springboot.routecalculator.service;
 
 import com.marcelofrau.springboot.routecalculator.model.City;
 import com.marcelofrau.springboot.routecalculator.model.CityConnection;
-import com.marcelofrau.springboot.routecalculator.model.RouteResponse;
+import com.marcelofrau.springboot.routecalculator.model.response.RoutePathResponse;
+import com.marcelofrau.springboot.routecalculator.model.response.RouteResponse;
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Edge;
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Graph;
 import com.marcelofrau.springboot.routecalculator.model.dijsktra.Vertex;
@@ -13,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -94,24 +94,33 @@ public class RouteCalculatorService {
             return Optional.empty();
         }
 
-        final Integer minConnections = pathInTime.size();
-        final Integer minTime = pathInConnections.size();
-
-        final List<String> connectionsPath = pathInConnections.stream().map((Vertex v) ->
-                v.getCity().getName()).collect(Collectors.toList());
-
-        final List<String> minConnectionsInTime = pathInTime.stream().map((Vertex v) ->
-                v.getCity().getName()).collect(Collectors.toList());
-
         final RouteResponse routeResponse = new RouteResponse();
         routeResponse.setOriginCity(fromCity);
         routeResponse.setDestinationCity(toCity);
-        routeResponse.setMinConnectionsToTravel(minConnections);
-        routeResponse.setMinTimeToTravelInHours(minTime);
-        routeResponse.setMinConnectionsPath(connectionsPath);
-        routeResponse.setMinConnectionsInTime(minConnectionsInTime);
+
+        if (pathInConnections != null) {
+            routeResponse.setMinimumPathInConnections(getMinConnectionsResponse(pathInConnections));
+        }
+        if (pathInTime != null) {
+            routeResponse.setMinimumPathInTime(getMinTimeResponse(pathInTime));
+        }
 
         return Optional.of(routeResponse);
+    }
+
+    private RoutePathResponse getMinTimeResponse(LinkedList<Vertex> pathInTime) {
+        return buildRoutePathResponse(pathInTime, "Minimum Path considering the time between connections");
+    }
+
+    private RoutePathResponse buildRoutePathResponse(LinkedList<Vertex> pathInTime, String description) {
+        final Integer minTime = pathInTime.size();
+        final List<String> minConnectionsInTime = pathInTime.stream().map((Vertex v) ->
+                v.getCity().getName()).collect(Collectors.toList());
+        return new RoutePathResponse(description, minTime, minConnectionsInTime);
+    }
+
+    private RoutePathResponse getMinConnectionsResponse(LinkedList<Vertex> pathInConnections) {
+        return buildRoutePathResponse(pathInConnections, "Minimum Path considering only connections");
     }
 
     public Optional<RouteResponse> fallbackCalculateRoute(final String fromCityName, final String toCityName) {
