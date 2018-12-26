@@ -27,7 +27,7 @@ cities-registry is reachable again, everything starts to work properly again.
 
 ### Scope and definitions
 
-There are two micro-service in this project, cities-registry and route-calculator.
+There are two micro-services in this project, cities-registry and route-calculator.
 
 The cities-registry is responsible to list all available cities and connections
 between cities. In this micro-service users can list, insert and delete new cities
