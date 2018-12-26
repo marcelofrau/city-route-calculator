@@ -23,15 +23,6 @@ public class RouteResponse {
 
     public RouteResponse() {}
 
-    public RouteResponse(City originCity, City destinationCity, Integer minConnectionsToTravel, Integer minTimeToTravelInHours, List<String> minConnectionsPath, List<String> minConnectionsInTime) {
-        this.originCity = originCity;
-        this.destinationCity = destinationCity;
-        this.minConnectionsToTravel = minConnectionsToTravel;
-        this.minTimeToTravelInHours = minTimeToTravelInHours;
-        this.minConnectionsPath = minConnectionsPath;
-        this.minConnectionsInTime = minConnectionsInTime;
-    }
-
     public City getOriginCity() {
         return originCity;
     }

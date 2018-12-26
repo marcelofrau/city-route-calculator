@@ -103,7 +103,15 @@ public class RouteCalculatorService {
         final List<String> minConnectionsInTime = pathInTime.stream().map((Vertex v) ->
                 v.getCity().getName()).collect(Collectors.toList());
 
-        return Optional.of(new RouteResponse(fromCity, toCity, minConnections, minTime, connectionsPath, minConnectionsInTime));
+        final RouteResponse routeResponse = new RouteResponse();
+        routeResponse.setOriginCity(fromCity);
+        routeResponse.setDestinationCity(toCity);
+        routeResponse.setMinConnectionsToTravel(minConnections);
+        routeResponse.setMinTimeToTravelInHours(minTime);
+        routeResponse.setMinConnectionsPath(connectionsPath);
+        routeResponse.setMinConnectionsInTime(minConnectionsInTime);
+
+        return Optional.of(routeResponse);
     }
 
     public Optional<RouteResponse> fallbackCalculateRoute(final String fromCityName, final String toCityName) {
