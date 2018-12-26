@@ -33,11 +33,14 @@ public class RouteCalculatorService {
 
     private static final Logger logger = LoggerFactory.getLogger(RouteCalculatorService.class);
 
-    private String cityRegistryURL;
+    private final String cityRegistryURL;
+    private final RestTemplate restTemplate;
 
     public RouteCalculatorService(
             @Value("${city.registry.url}") String cityRegistryURL,
-            @Autowired Environment environment) {
+            @Autowired RestTemplate restTemplate) {
+
+        this.restTemplate = restTemplate;
 
         final String overrideUrl = System.getenv().get("CITIES_REGISTRY_URL");
 
@@ -47,6 +50,7 @@ public class RouteCalculatorService {
         } else {
             this.cityRegistryURL = cityRegistryURL;
         }
+
         logger.info("CitiesRepository configured url: '{}'", this.cityRegistryURL);
     }
 
@@ -110,7 +114,6 @@ public class RouteCalculatorService {
 
     @HystrixCommand(fallbackMethod = "fallbackConnectionsReliable")
     private CityConnection[] fetchConnections() {
-        final RestTemplate restTemplate = new RestTemplate();
         final String url = String.format("%s/%s", cityRegistryURL, "connections");
         final ResponseEntity<CityConnection[]> response = restTemplate.getForEntity(url, CityConnection[].class);
 
@@ -122,7 +125,6 @@ public class RouteCalculatorService {
 
     @HystrixCommand(fallbackMethod = "fallbackCitiesReliable")
     private City[] fetchCities() {
-        final RestTemplate restTemplate = new RestTemplate();
         final String url = String.format("%s/%s", cityRegistryURL, "cities");
         final ResponseEntity<City[]> response = restTemplate.getForEntity(url, City[].class);
         return response.getBody();

@@ -5,16 +5,16 @@ services:
     build: 
       context: ./cities-registry
     ports:
-      - 8081:8081
+      - 8444:8444
     networks:
       - net1
   route-calculator:
     build:
       context: ./route-calculator
     ports:
-      - 8080:8080
+      - 8443:8443
     environment:
-      - CITIES_REGISTRY_URL=http://cities-registry:8081
+      - CITIES_REGISTRY_URL=https://cities-registry:8444
     depends_on:
       - cities-registry
     networks:

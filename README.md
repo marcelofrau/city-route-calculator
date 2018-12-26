@@ -40,7 +40,7 @@ docker-compose build
 docker-compose up
 ```
 
-Two main services will be open, one in a 8080 port and another in 8081, you can check more info below on
+Two main services will be open, one in a 8443 port and another in 8444, you can check more info below on
 how to access each micro-service.
 
 ***NOTE***: Please run the commands above in the root folder of this project.
@@ -72,12 +72,12 @@ cd route-calculator
 
 ##### cities-registry access the API (docker access)
 
-- [http://192.168.99.100:8081/connections/](http://192.168.99.100:8081/connections/)
-- [http://192.168.99.100:8081/cities/](http://192.168.99.100:8081/cities/)
+- [https://192.168.99.100:8444/connections/](https://192.168.99.100:8444/connections/)
+- [https://192.168.99.100:8444/cities/](https://192.168.99.100:8444/cities/)
 
 ##### cities-registry access the Documentation API (Swagger UI Interface, docker access)
 
-- [http://192.168.99.100:8081/swagger-ui.html](http://192.168.99.100:8081/swagger-ui.html)
+- [https://192.168.99.100:8444/swagger-ui.html](https://192.168.99.100:8444/swagger-ui.html)
 
 #### route-calculator (docker access)
 
@@ -85,11 +85,11 @@ To see all the available usage, please refer to the Swagger Documentation API
 
 ##### route-calculator access the API (docker access)
 
-- [http://192.168.99.100:8080/calculate-route/](http://192.168.99.100:8080/calculate-route/)
+- [https://192.168.99.100:8443/calculate-route/](https://192.168.99.100:8443/calculate-route/)
 
 ##### route-calculator access the Documentation API (Swagger UI Interface, docker access)
 
-- [http://192.168.99.100:8080/swagger-ui.html](http://192.168.99.100:8080/swagger-ui.html)
+- [https://192.168.99.100:8443/swagger-ui.html](https://192.168.99.100:8443/swagger-ui.html)
 
 ## Running without docker (locally)
 
@@ -140,12 +140,12 @@ is intented to be changed on a production environment.
 
 ##### cities-registry access the API (local access)
 
-- [http://localhost:8081/connections/](http://localhost:8081/connections/)
-- [http://localhost:8081/cities/](http://localhost:8081/cities/)
+- [https://localhost:8444/connections/](https://localhost:8444/connections/)
+- [https://localhost:8444/cities/](https://localhost:8444/cities/)
 
 ##### cities-registry access the Documentation API (Swagger UI Interface, local access)
 
-- [http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)
+- [https://localhost:8444/swagger-ui.html](https://localhost:8444/swagger-ui.html)
 
 #### route-calculator (local access)
 
@@ -153,11 +153,11 @@ To see all the available usage, please refer to the Swagger Documentation API
 
 ##### route-calculator access the API
 
-- [http://localhost:8080/calculate-route/](http://localhost:8080/calculate-route/)
+- [https://localhost:8443/calculate-route/](https://localhost:8443/calculate-route/)
 
 ##### route-calculator access the Documentation API (Swagger UI Interface)
 
-- [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+- [https://localhost:8443/swagger-ui.html](https://localhost:8443/swagger-ui.html)
 
 ## Ideal pipeline
 
@@ -170,4 +170,4 @@ on development and on distribution of each release.
 
 - [https://www.baeldung.com/spring-cloud-netflix-hystrix](https://www.baeldung.com/spring-cloud-netflix-hystrix)
 - [http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html](http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html)
-- 
+- [https://www.drissamri.be/blog/java/enable-https-in-spring-boot/](https://www.drissamri.be/blog/java/enable-https-in-spring-boot/)
