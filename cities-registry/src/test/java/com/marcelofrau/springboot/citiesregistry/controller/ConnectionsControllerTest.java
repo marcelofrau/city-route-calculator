@@ -4,8 +4,6 @@ package com.marcelofrau.springboot.citiesregistry.controller;
 import com.marcelofrau.springboot.citiesregistry.model.City;
 import com.marcelofrau.springboot.citiesregistry.model.CityConnection;
 import com.marcelofrau.springboot.citiesregistry.repository.CityConnectionRepository;
-import com.marcelofrau.springboot.citiesregistry.repository.CityRepository;
-import com.marcelofrau.springboot.citiesregistry.service.CitiesService;
 import com.marcelofrau.springboot.citiesregistry.service.ConnectionsService;
 import org.assertj.core.util.Lists;
 import org.junit.Test;

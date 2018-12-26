@@ -112,9 +112,9 @@ public class RouteCalculatorService {
         return buildRoutePathResponse(pathInTime, "Minimum Path considering the time between connections");
     }
 
-    private RoutePathResponse buildRoutePathResponse(LinkedList<Vertex> pathInTime, String description) {
-        final Integer minTime = pathInTime.size();
-        final List<String> minConnectionsInTime = pathInTime.stream().map((Vertex v) ->
+    private RoutePathResponse buildRoutePathResponse(LinkedList<Vertex> vertices, String description) {
+        final Integer minTime = vertices.size() - 1;
+        final List<String> minConnectionsInTime = vertices.stream().map((Vertex v) ->
                 v.getCity().getName()).collect(Collectors.toList());
         return new RoutePathResponse(description, minTime, minConnectionsInTime);
     }

@@ -81,15 +81,15 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         cityTimeConnectionRepository.save(new CityConnection(saoPaulo, maceio, 8d));
         cityTimeConnectionRepository.save(new CityConnection(campinas, maceio, 16d));
         cityTimeConnectionRepository.save(new CityConnection(rioDeJaneiro, maceio, 2d));
-//        cityTimeConnectionRepository.save(new CityConnection(saoPaulo, guaratingueta, 4d));
-//        cityTimeConnectionRepository.save(new CityConnection(saoPaulo, salvador, 50d));
-//        cityTimeConnectionRepository.save(new CityConnection(saoPaulo, campinaGrande, 80d));
-//        cityTimeConnectionRepository.save(new CityConnection(campinas, campinaGrande, 8d));
-//        cityTimeConnectionRepository.save(new CityConnection(patoBranco, guaratingueta, 4d));
-//        cityTimeConnectionRepository.save(new CityConnection(curitiba, salvador, 50d));
-//        cityTimeConnectionRepository.save(new CityConnection(patoBranco, saoPaulo, 32d));
-//        cityTimeConnectionRepository.save(new CityConnection(curitiba, saoPaulo, 24d));
-//        cityTimeConnectionRepository.save(new CityConnection(campinas, curitiba, 24d));
+        cityTimeConnectionRepository.save(new CityConnection(saoPaulo, guaratingueta, 4d));
+        cityTimeConnectionRepository.save(new CityConnection(saoPaulo, salvador, 50d));
+        cityTimeConnectionRepository.save(new CityConnection(saoPaulo, campinaGrande, 80d));
+        cityTimeConnectionRepository.save(new CityConnection(campinas, campinaGrande, 8d));
+        cityTimeConnectionRepository.save(new CityConnection(patoBranco, guaratingueta, 4d));
+        cityTimeConnectionRepository.save(new CityConnection(curitiba, salvador, 50d));
+        cityTimeConnectionRepository.save(new CityConnection(patoBranco, saoPaulo, 32d));
+        cityTimeConnectionRepository.save(new CityConnection(curitiba, saoPaulo, 24d));
+        cityTimeConnectionRepository.save(new CityConnection(campinas, curitiba, 24d));
 
     }
 }

@@ -29,6 +29,13 @@ public class CityConnection {
         this.distanceInHours = distanceInHours;
     }
 
+    public CityConnection(Long id, City originCity, City destinationCity, Double distanceInHours) {
+        this.id = id;
+        this.originCity = originCity;
+        this.destinationCity = destinationCity;
+        this.distanceInHours = distanceInHours;
+    }
+
     public Long getId() {
         return id;
     }
