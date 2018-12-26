@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/marcelofrau/city-route-calculator.svg?branch=master)](https://travis-ci.org/marcelofrau/city-route-calculator)
 [![Codebeat badge](https://codebeat.co/badges/a1dfb632-3f1c-4164-8561-8556e6a8bee3)](https://codebeat.co/projects/github-com-marcelofrau-city-route-calculator-master)
-[![Circle-ci Status](https://img.shields.io/circleci/project/github/marcelofrau/city-route-calculator.svg)](https://circleci.com/gh/marcelofrau/city-route-calculator)
+[![Circle-ci Status](https://img.shields.io/circleci/project/github/marcelofrau/city-route-calculator.svg?logo=circleci)](https://circleci.com/gh/marcelofrau/city-route-calculator)
 [![License: GPL v3](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 This system is provided by two main micro-services. Both written in Java with Spring Boot framework.
