@@ -54,9 +54,9 @@ the route-calculator to communicate with a 'alien' cities-registry.
 
 To authenticate you can use the user:
 
-- username: user, password: user (that has the role USER)
-- username: admin, password: admin (that has the role ADMIN)
-- username: route-calculator, password: route-calculator (that has the role USER, but is intended to be used internally in the route-calculator service)
+- username: user, password: user (with the role USER)
+- username: admin, password: admin (with the role ADMIN)
+- username: route-calculator, password: route-calculator (with the role USER, but is intended to be used internally in the route-calculator service)
 
 #### The role USER
 
@@ -114,7 +114,6 @@ cd route-calculator
 ***NOTE***: Please replace 192.168.99.100 with your docker ip.
 
 #### cities-registry (docker access)
-
 
 ##### cities-registry access the API (docker access)
 
@@ -205,12 +204,12 @@ To see all the available usage, please refer to the Swagger Documentation API
 
 - [https://localhost:8443/swagger-ui.html](https://localhost:8443/swagger-ui.html)
 
-## Ideal pipeline
+## Ideal pipeline (Proposal)
 
 In this section I described an ideal pipeline configuration to achieve the best performance
 on development and on distribution of each release.
 
-//TODO
+![pipeline diagram](documentation/pipeline-diagram.png)
 
 ## References
 
