@@ -52,7 +52,7 @@ the route-calculator to communicate with a 'alien' cities-registry.
 
 To see how its done, you can see the implementation on the class:
 
-- [route-calculator\src\main\java\com\marcelofrau\springboot\routecalculator\configuration\SSLVerificationConfig.java](route-calculator\src\main\java\com\marcelofrau\springboot\routecalculator\configuration\SSLVerificationConfig.java)
+- [route-calculator/src/main/java/com/marcelofrau/springboot/routecalculator/configuration/SSLVerificationConfig.java](route-calculator/src/main/java/com/marcelofrau/springboot/routecalculator/configuration/SSLVerificationConfig.java)
 
 ### Authentication
 
