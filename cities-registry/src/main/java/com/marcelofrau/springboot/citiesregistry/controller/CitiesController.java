@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -44,6 +45,7 @@ public class CitiesController {
     @ApiResponses(value={
         @ApiResponse(code = 200, message = "Successfully retrieved list"),
     })
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Iterable<City>> listCities() {
         final Iterable<City> cities = service.listCities();
 
@@ -66,6 +68,7 @@ public class CitiesController {
     @ApiResponses(value={
             @ApiResponse(code = 200, message = "Successfully saved city"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<City> saveCity(@RequestBody City city) {
         logger.info("Saving city [{}]", city);
         return ResponseEntity.ok(service.saveCity(city));
@@ -84,6 +87,7 @@ public class CitiesController {
             @ApiResponse(code = 404, message = "Not found in case of no found city"),
             @ApiResponse(code = 200, message = "Successfully deleted city"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<City> deleteCity(@RequestBody City city) {
         logger.info("Deleting city [{}]", city);
 
@@ -114,6 +118,7 @@ public class CitiesController {
             @ApiResponse(code = 404, message = "Not found in case of no found city (if searched by id)"),
             @ApiResponse(code = 200, message = "Successfully found list of cities"),
     })
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Iterable<City>> findCity(@RequestParam(required = false) Long id, @RequestParam(required = false) String name) {
         if (id != null && name != null) {
             return ResponseEntity.badRequest().build();

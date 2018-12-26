@@ -3,6 +3,7 @@ package com.marcelofrau.springboot.routecalculator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 /**
  * Bootstrap class to start the main RouteCalculatorApplication
@@ -15,6 +16,7 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
  */
 @SpringBootApplication
 @EnableCircuitBreaker
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class RouteCalculatorApplication {
 
 	/**

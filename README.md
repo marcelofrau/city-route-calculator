@@ -174,3 +174,5 @@ on development and on distribution of each release.
 - [https://www.opencodez.com/java/read-x509-certificate-java-keystore.htm](https://www.opencodez.com/java/read-x509-certificate-java-keystore.htm)
 - [http://shengwangi.blogspot.com/2017/03/spring-resttemplate-useful-hints.html](http://shengwangi.blogspot.com/2017/03/spring-resttemplate-useful-hints.html)
 - [https://www.drissamri.be/blog/java/enable-https-in-spring-boot/](https://www.drissamri.be/blog/java/enable-https-in-spring-boot/)
+- [https://www.devglan.com/online-tools/bcrypt-hash-generator](https://www.devglan.com/online-tools/bcrypt-hash-generator)
+- [https://www.devglan.com/spring-security/spring-boot-security-rest-basic-authentication](https://www.devglan.com/spring-security/spring-boot-security-rest-basic-authentication)

@@ -2,6 +2,7 @@ package com.marcelofrau.springboot.citiesregistry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 /**
  * Bootstrap class to start the main CitiesRegistryApplication
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * to list, create, delete cities and connections.
  */
 @SpringBootApplication
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class CitiesRegistryApplication {
 
 	/**

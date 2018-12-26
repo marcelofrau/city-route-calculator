@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -44,6 +45,7 @@ public class ConnectionsController {
     @ApiResponses(value={
             @ApiResponse(code = 200, message = "Successfully retrieved list"),
     })
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Iterable<CityConnection>> listConnections() {
         logger.info("Listing all connections");
         final Iterable<CityConnection> connections = service.listConnections();
@@ -66,6 +68,7 @@ public class ConnectionsController {
     @ApiResponses(value={
             @ApiResponse(code = 200, message = "Successfully saved city connection"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CityConnection> saveConnection(@RequestBody CityConnection connection) {
         logger.debug("Saving connection {}", connection);
         return ResponseEntity.ok(service.saveConnection(connection));
@@ -87,6 +90,7 @@ public class ConnectionsController {
             @ApiResponse(code = 404, message = "No content in case of no found connection"),
             @ApiResponse(code = 200, message = "Successfully deleted connection"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CityConnection> deleteConnection(@RequestBody CityConnection connection) {
         logger.info("Deleting city [{}]", connection);
 
