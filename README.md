@@ -20,6 +20,50 @@ available, route-calculator have a circuit-breaker mechanism that prevent user t
 error information, so a default fallback method is triggered returning no path available, when
 cities-registry is reachable again, everything starts to work properly again.
 
+## Project details
+
+### Scope and definitions
+
+There are two micro-service in this project, cities-registry and route-calculator.
+
+The cities-registry is responsible to list all available cities and connections
+between cities. In this micro-service users can list, insert and delete new cities
+and new connections. In each connection user can inform the time to travel
+between any connection.
+
+The route-calculator is responsible to calculate a route from any given city to another
+and show the info in two ways, it shows the minimum path in connections and also shows
+the minimum time to travel from a city to another (it also show the path that is made to
+have the minimum time)
+
+### Build and process
+
+This project is using travis to ensure all builds are passing. Also it uses codebeat to have a static
+analysis tool to indicate where the code could be improved.
+
+### HTTPS communication
+
+All data is handled with https connections, even between services. The route-calculator have the cities-registry
+certificate and validate it to certify that the connection is done with the right certificate, in this way
+if some other service try to act as a fake cities-registry, the certificate validation will not allow
+the route-calculator to communicate with a 'alien' cities-registry.
+
+### Authentication
+
+To authenticate you can use the user:
+
+- username: user, password: user (that has the role USER)
+- username: admin, password: admin (that has the role ADMIN)
+- username: route-calculator, password: route-calculator (that has the role USER, but is intended to be used internally in the route-calculator service)
+
+#### The role USER
+
+Users with the role USER can read all the data from all the micro-services, but they have no permission to include or delete any data.
+
+#### The role ADMIN
+
+Users with the role ADMIN can do all the stuff, list, include, delete any data.
+
 ## Running in docker with docker-compose
 
 To start using the docker-compose.yaml you must run the following commands:
