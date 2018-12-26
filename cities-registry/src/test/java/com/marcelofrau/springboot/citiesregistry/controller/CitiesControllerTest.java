@@ -79,14 +79,13 @@ public class CitiesControllerTest {
     @Test
     public void shouldNotDeleteCity() {
         final City city = getCity();
-        when(service.deleteCity(any())).thenReturn(city);
         when(service.findCity(anyLong())).thenReturn(Optional.empty());
 
         final ResponseEntity<City> responseEntity = controller.deleteCity(city);
         assertNotNull(responseEntity);
         assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
 
-        verify(service, times(1)).deleteCity(any());
+        verify(service, times(0)).deleteCity(any());
     }
 
 //    public ResponseEntity<City> deleteCity(@RequestBody City city) {
