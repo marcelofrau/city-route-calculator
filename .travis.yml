@@ -12,5 +12,8 @@ before_install:
 - chmod a+x gradle/wrapper/gradle-wrapper.jar
 
 script:
+  - ./gradlew build
+  - ./gradlew jacocoTestReport
   - ./gradlew dockerBuild
-# add coverage and integration tests
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
