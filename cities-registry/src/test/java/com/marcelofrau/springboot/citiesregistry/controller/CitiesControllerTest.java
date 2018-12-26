@@ -139,6 +139,22 @@ public class CitiesControllerTest {
         verify(service, times(1)).findCity(anyString());
     }
 
+    @Test
+    public void shouldBadRequestFindingCity() {
+        final ResponseEntity<Iterable<City>> responseEntity = controller.findCity(null, null);
+
+        assertNotNull(responseEntity);
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void shouldBadRequestOnBothArgumentsFilledFindingCity() {
+        final ResponseEntity<Iterable<City>> responseEntity = controller.findCity(0xF00L, "bar");
+
+        assertNotNull(responseEntity);
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+    }
+
     private City getCity() {
         final City city = new City();
         city.setId(10L);
