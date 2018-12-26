@@ -14,7 +14,7 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
  * this micro-service.
  */
 @SpringBootApplication
-//@EnableCircuitBreaker
+@EnableCircuitBreaker
 public class RouteCalculatorApplication {
 
 	/**

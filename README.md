@@ -171,3 +171,6 @@ on development and on distribution of each release.
 - [https://www.baeldung.com/spring-cloud-netflix-hystrix](https://www.baeldung.com/spring-cloud-netflix-hystrix)
 - [http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html](http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html)
 - [https://www.drissamri.be/blog/java/enable-https-in-spring-boot/](https://www.drissamri.be/blog/java/enable-https-in-spring-boot/)
+- [https://www.opencodez.com/java/read-x509-certificate-java-keystore.htm](https://www.opencodez.com/java/read-x509-certificate-java-keystore.htm)
+- [http://shengwangi.blogspot.com/2017/03/spring-resttemplate-useful-hints.html](http://shengwangi.blogspot.com/2017/03/spring-resttemplate-useful-hints.html)
+- [https://www.drissamri.be/blog/java/enable-https-in-spring-boot/](https://www.drissamri.be/blog/java/enable-https-in-spring-boot/)
