@@ -45,5 +45,11 @@ jobs:
       # run tests!
       - run: gradle test
 
+      - run: gradle build
+
+      - run: gradle dockerBuild
+
+      #- run: gradle dockerSave
+
 
 
