@@ -29,8 +29,6 @@ cities-registry is reachable again, everything starts to work properly again.
 
 There are two micro-service in this project, cities-registry and route-calculator.
 
-
-
 The cities-registry is responsible to list all available cities and connections
 between cities. In this micro-service users can list, insert and delete new cities
 and new connections. In each connection user can inform the time to travel
@@ -63,9 +61,9 @@ To see how its done, you can see the implementation on the class:
 
 To authenticate you can use the user:
 
-- username: user, password: user (with the role USER)
-- username: admin, password: admin (with the role ADMIN)
-- username: route-calculator, password: route-calculator (with the role USER, but is intended to be used internally in the route-calculator service)
+- username: **user**, password: **user** (with the role USER)
+- username: **admin**, password: **admin** (with the role ADMIN)
+- username: **route-calculator**, password: **route-calculator** (with the role USER, but is intended to be used internally in the route-calculator service)
 
 #### The role USER
 

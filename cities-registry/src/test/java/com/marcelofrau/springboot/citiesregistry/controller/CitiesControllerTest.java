@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -88,9 +89,55 @@ public class CitiesControllerTest {
         verify(service, times(0)).deleteCity(any());
     }
 
-//    public ResponseEntity<City> deleteCity(@RequestBody City city) {
-//    public ResponseEntity<Iterable<City>> findCity(@RequestParam(required = false) Long id, @RequestParam(required = false) String name) {
+    @Test
+    public void shouldFindCityById() {
+        final City city = getCity();
+        when(service.findCity(anyLong())).thenReturn(Optional.of(city));
 
+        final ResponseEntity<Iterable<City>> responseEntity = controller.findCity(1L, null);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+
+        final Iterable<City> body = responseEntity.getBody();
+        assertNotNull(body);
+        assertEquals(city, body.iterator().next());
+
+        verify(service, times(1)).findCity(anyLong());
+    }
+
+    @Test
+    public void shouldNotFindCityById() {
+        when(service.findCity(anyLong())).thenReturn(Optional.empty());
+
+        final ResponseEntity<Iterable<City>> responseEntity = controller.findCity(1L, null);
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+
+        verify(service, times(1)).findCity(anyLong());
+    }
+
+    @Test
+    public void shouldFindCityByName() {
+        final City city = getCity();
+        when(service.findCity(anyString())).thenReturn(Lists.list(city));
+
+        final ResponseEntity<Iterable<City>> responseEntity = controller.findCity(null, "Foo");
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+
+        final Iterable<City> body = responseEntity.getBody();
+        assertNotNull(body);
+        assertEquals(city, body.iterator().next());
+
+        verify(service, times(1)).findCity(anyString());
+    }
+
+    @Test
+    public void shouldNotFindCityByName() {
+        when(service.findCity(anyString())).thenReturn(Lists.emptyList());
+
+        final ResponseEntity<Iterable<City>> responseEntity = controller.findCity(null, "Foo");
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+
+        verify(service, times(1)).findCity(anyString());
+    }
 
     private City getCity() {
         final City city = new City();

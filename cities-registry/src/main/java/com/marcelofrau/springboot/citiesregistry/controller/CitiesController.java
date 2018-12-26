@@ -138,6 +138,10 @@ public class CitiesController {
     private ResponseEntity<Iterable<City>> findByName(String name) {
         final Iterable<City> cities = service.findCity(name);
 
+        if (!cities.iterator().hasNext()) {
+            return ResponseEntity.notFound().build();
+        }
+
         return ResponseEntity.ok(cities);
     }
 
