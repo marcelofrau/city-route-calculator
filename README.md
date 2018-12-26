@@ -29,6 +29,8 @@ cities-registry is reachable again, everything starts to work properly again.
 
 There are two micro-service in this project, cities-registry and route-calculator.
 
+All routes calculated in the micro-services are using ***Dijkstra Algorithm***
+
 The cities-registry is responsible to list all available cities and connections
 between cities. In this micro-service users can list, insert and delete new cities
 and new connections. In each connection user can inform the time to travel
