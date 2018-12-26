@@ -50,6 +50,10 @@ certificate and validate it to certify that the connection is done with the righ
 if some other service try to act as a fake cities-registry, the certificate validation will not allow
 the route-calculator to communicate with a 'alien' cities-registry.
 
+To see how its done, you can see the implementation on the class:
+
+- [route-calculator\src\main\java\com\marcelofrau\springboot\routecalculator\configuration\SSLVerificationConfig.java](route-calculator\src\main\java\com\marcelofrau\springboot\routecalculator\configuration\SSLVerificationConfig.java)
+
 ### Authentication
 
 To authenticate you can use the user:
